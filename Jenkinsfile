@@ -18,6 +18,7 @@ pipeline {
 
         stage('Unit Test') {
             steps {
+                bat '"%PYTHON%" -m pip install -r requirements.txt'
                 bat '"%PYTHON%" -m pytest'
             }
         }
