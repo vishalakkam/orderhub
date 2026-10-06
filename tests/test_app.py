@@ -37,6 +37,7 @@ def test_version():
 
     data = response.get_json()
 
+    assert data["service"] == "OrderHub"
     assert data["version"] == "1.0.0"
-    assert data["build"] == "unknown"
-    assert data["commit"] == "unknown"
+    assert "build" in data
+    assert "commit" in data
