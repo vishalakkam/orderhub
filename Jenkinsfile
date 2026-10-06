@@ -15,7 +15,7 @@ pipeline {
 
         stage('Unit Test') {
             steps {
-                bat 'docker run --rm -v "%CD%:/app" -w /app python:3.13-slim sh -c "pip install -r requirements.txt && python -m pytest"'
+                bat 'python -m pytest'
             }
         }
 
