@@ -35,6 +35,7 @@ def orders():
 @app.route("/version")
 def version():
     return jsonify({
+        "service": "OrderHub",
         "version": os.getenv("APP_VERSION", "1.0.0"),
         "build": os.getenv("BUILD_NUMBER", "unknown"),
         "commit": os.getenv("GIT_COMMIT", "unknown")
