@@ -47,6 +47,15 @@ pipeline {
                 '''
             }
         }
+
+        stage('Push Image') {
+    steps {
+        bat '''
+            "%DOCKER%" tag %IMAGE_NAME%:%BUILD_NUMBER% localhost:5000/%IMAGE_NAME%:%BUILD_NUMBER%
+            "%DOCKER%" push localhost:5000/%IMAGE_NAME%:%BUILD_NUMBER%
+        '''
+    }
+}
     }
 
     post {
