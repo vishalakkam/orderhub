@@ -1,3 +1,4 @@
+```groovy
 pipeline {
     agent any
 
@@ -33,9 +34,15 @@ pipeline {
             steps {
                 bat '''
                     "%DOCKER%" rm -f orderhub-test 2>nul || exit /b 0
+
                     "%DOCKER%" run -d --name orderhub-test -p 18080:8080 %IMAGE_NAME%:%BUILD_NUMBER%
-                    timeout /t 10 /nobreak
+
+                    ping 127.0.0.1 -n 11 >nul
+
+                    "%DOCKER%" ps
+
                     curl --fail http://localhost:18080/health
+
                     "%DOCKER%" rm -f orderhub-test
                 '''
             }
@@ -48,3 +55,4 @@ pipeline {
         }
     }
 }
+```
